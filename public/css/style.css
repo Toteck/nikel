@@ -104,6 +104,15 @@ header {
     color: #4c79d3;
 }
 
+.logout {
+    min-width: 5rem !important;
+}
+
+.menu {
+    margin-right: 20px;
+    
+}
+
 @media (min-width: 768px) {
     .login {
         background: linear-gradient(110deg, #4c79d3 44.9%, #fff 45%) no-repeat;

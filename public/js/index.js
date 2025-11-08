@@ -1,4 +1,8 @@
 const myModal = new bootstrap.Modal("#register-modal");
+let logged = sessionStorage.getItem("logged");
+const session = localStorage.getItem("session")
+
+checkedLogged();
 
 // LOGAR NO SISTEMA
 document.getElementById("login-form").addEventListener('submit', function (e) {
@@ -6,8 +10,23 @@ document.getElementById("login-form").addEventListener('submit', function (e) {
 
     const email = document.getElementById('email-input').value;
     const password = document.getElementById('password-input').value;
+    const checkSession = document.getElementById("session-input").value;
 
-    console.log(email, password)
+    const account = getAccount(email);
+
+    if (!account) {
+        alert("Ops, verifique o usuário ou a senha.");
+        return
+    }
+
+    if (account.password !== password) {
+        alert("Ops, verifique o usuário ou a senha.");
+        return
+    }
+
+    saveSession(email, checkSession);
+
+    window.location.href = 'home.html'
 })
 
 // CRIAR CONTA
@@ -40,6 +59,35 @@ document.getElementById("create-form").addEventListener('submit', function (e) {
 }
 )
 
+function checkedLogged() {
+    if (session) {
+        sessionStorage.setItem("logged", session);
+    }
+
+    if (logged) {
+        saveSession(logged, session);
+        window.location.href = "home.html"
+    }
+}
+
 function saveAccount(data) {
     localStorage.setItem(data.login, JSON.stringify(data));
+}
+
+function getAccount(key) {
+    const account = localStorage.getItem(key);
+
+    if (!account) {
+        return ""
+    }
+
+    return JSON.parse(account)
+}
+
+function saveSession(data, saveSession) {
+    if (saveSession) {
+        localStorage.setItem("session", data)
+    }
+
+    sessionStorage.setItem("logged", data);
 }
