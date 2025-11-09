@@ -36,8 +36,6 @@ document.getElementById("transaction-form").addEventListener("submit", function 
     getTotal();
 
     alert("Lançamento adicionado com sucesso!");
-
-
 })
 
 checkedLogged();
@@ -109,7 +107,6 @@ function getCashIn() {
 
 
 }
-
 
 function getCashOut() {
     const transactions = data.transactions;
