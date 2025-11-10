@@ -16,6 +16,29 @@ document.getElementById("logo").addEventListener("click", function (e) {
 checkedLogged();
 getTransactions()
 
+document.getElementById("select-all").addEventListener("change", function (e) {
+    const checkboxes = document.querySelectorAll(".transaction-checkbox");
+    checkboxes.forEach(cb => cb.checked = e.target.checked);
+});
+
+document.getElementById("delete-selected").addEventListener("click", function () {
+    const selected = Array.from(document.querySelectorAll(".transaction-checkbox:checked"))
+        .map(cb => parseInt(cb.dataset.index));
+
+    if (selected.length === 0) {
+        alert("Nenhum lançamento selecionado!");
+        return;
+    }
+
+    if (confirm(`Excluir ${selected.length} lançamento(s)?`)) {
+        data.transactions = data.transactions.filter((_, index) => !selected.includes(index));
+        saveData(data);
+        getTransactions();
+        alert("Lançamento(s) excluído(s) com sucesso!");
+    }
+});
+
+
 // ADICIONAR LANÇAMENTO
 document.getElementById("transaction-form").addEventListener("submit", function (e) {
     e.preventDefault()
@@ -81,7 +104,7 @@ function getTransactions() {
     let transactionsHtml = ``;
 
     if (transactions.length) {
-        transactions.forEach((item) => {
+        transactions.forEach((item, index) => {
             let type = "Entrada";
 
             if (item.type === "2") {
@@ -90,6 +113,7 @@ function getTransactions() {
 
             transactionsHtml += `
                 <tr>
+                    <td><input type="checkbox" class="transaction-checkbox" data-index="${index}"></td>
                     <th scope="row">${formatDateTOBR(item.date)}</th>
                     <td>${item.value}</td>
                     <td>${type}</td>

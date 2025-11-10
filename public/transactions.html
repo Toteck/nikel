@@ -74,9 +74,14 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <input type="checkbox" id="select-all">
+                                    <label for="select-all" class="m-0">Selecionar todos</label>
+                                </div>
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th scope="col" style="width:40px;"></th>
                                             <th scope="col">Data</th>
                                             <th scope="col">Valor R$</th>
                                             <th scope="col">Tipo</th>
@@ -100,6 +105,8 @@
             <button class="btn button-float" data-bs-toggle="modal" data-bs-target="#transaction-modal">
                 <i class="bi bi-plus "></i>
             </button>
+            <button class="btn btn-danger button-trash-float mt-3" id="delete-selected"><i
+                    class="bi bi-trash "></i></button>
         </div>
 
         <!-- Modal -->
@@ -148,6 +155,8 @@
                             <button type="button" class="btn btn-secondary button-cancel"
                                 data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn button-default">Adicionar</button>
+
+
                         </div>
                     </form>
                 </div>
