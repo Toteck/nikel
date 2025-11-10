@@ -6,6 +6,11 @@ let data = {
     transactions: []
 }
 
+document.getElementById("logo").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.href = "home.html"
+})
+
 document.getElementById("button-logout").addEventListener("click", logout)
 document.getElementById("transactions-button").addEventListener("click", function (e) {
     e.preventDefault();
@@ -68,6 +73,18 @@ function logout() {
     window.location.href = "index.html"
 }
 
+function formatDateTOBR(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    if (isNaN(date)) return dateString; // se a data for inválida, retorna a string original
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(1, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
 function getCashIn() {
     const transactions = data.transactions;
 
@@ -87,14 +104,14 @@ function getCashIn() {
             cashInHtml += `
                 <div class="row mb-4">
                     <div class="col-12">
-                        <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)}</h3>
+                        <p class="value-text text-primary fw-bold nowrap"> + R$ ${cashIn[index].value.toFixed(2)}</p>
                         <di class="container p-0">
-                            <div class="row">
-                                <div class="col-12 col-md-8">
-                                    <p>${cashIn[index].description}</p>
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-8 text-muted mb-1 mb-md-0">
+                                    <p class="mb-0">${cashIn[index].description}</p>
                                 </div>
-                                <div class="col-12 col-md-3 d-flex justify-content-end">
-                                    <span>${cashIn[index].date}</span>
+                                <div class="col-12 col-md-4 d-flex justify-content-start justify-content-md-end">
+                                    <span class="date-text">${formatDateTOBR(cashIn[index].date)}</span>
                                 </div>
                             </div>
                     </div>
@@ -127,14 +144,14 @@ function getCashOut() {
             cashInHtml += `
                 <div class="row mb-4">
                     <div class="col-12">
-                        <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)}</h3>
+                        <p class="value-text text-danger fw-bold">- R$ ${cashIn[index].value.toFixed(2)}</hp>
                         <di class="container p-0">
-                            <div class="row">
-                                <div class="col-12 col-md-8">
-                                    <p>${cashIn[index].description}</p>
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-8 text-muted mb-1 mb-md-0">
+                                    <p class="mb-0">${cashIn[index].description}</p>
                                 </div>
-                                <div class="col-12 col-md-3 d-flex justify-content-end">
-                                    <span>${cashIn[index].date}</span>
+                                <div class="col-12 col-md-4 d-flex justify-content-start justify-content-md-end">
+                                    <span class="date-text">${formatDateTOBR(cashIn[index].date)}</span>
                                 </div>
                             </div>
                     </div>

@@ -8,6 +8,10 @@ let data = {
 
 document.getElementById("button-logout").addEventListener("click", logout)
 
+document.getElementById("logo").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.href = "home.html"
+})
 
 checkedLogged();
 getTransactions()
@@ -59,6 +63,19 @@ function saveData(data) {
     localStorage.setItem(data.login, JSON.stringify(data));
 }
 
+function formatDateTOBR(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    if (isNaN(date)) return dateString; // se a data for inválida, retorna a string original
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(1, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
+
 function getTransactions() {
     const transactions = data.transactions;
     let transactionsHtml = ``;
@@ -73,7 +90,7 @@ function getTransactions() {
 
             transactionsHtml += `
                 <tr>
-                    <th scope="row">${item.date}</th>
+                    <th scope="row">${formatDateTOBR(item.date)}</th>
                     <td>${item.value}</td>
                     <td>${type}</td>
                     <td>${item.description}</td>
