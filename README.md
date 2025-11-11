@@ -51,7 +51,20 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 - [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 
 
-## 🚀Status do Projeto
+## 🖼️ Screenshots
+
+<p align="center">
+  <img src="./public/assets/preview/login.png" width="700px" alt="Página de login">
+</p>
+
+<p align="center">
+  <img src="./public/assets/preview/login.png" width="700px" alt="Página Home">
+</p>
+
+<p align="center">
+  <img src="./public/assets/preview/transactions.png" width="700px" alt="Página Transações">
+</p>
+
 
 <h4> Projeto concluido...✅ </h4>
 
