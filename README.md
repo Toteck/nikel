@@ -10,6 +10,7 @@
    * [Funcionalidades](#-funcionalidades)
    * [Pré-Requisitos](#pré-requisitos)
    * [Tecnologias](#-tecnologias)
+   * [Screenshots](#-screenshots)
 <!--te-->
 
 ## Sobre
@@ -58,7 +59,7 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 </p>
 
 <p align="center">
-  <img src="./public/assets/preview/login.png" width="700px" alt="Página Home">
+  <img src="./public/assets/preview/home.png" width="700px" alt="Página Home">
 </p>
 
 <p align="center">
